@@ -1,0 +1,52 @@
+//
+//  AuthManager.swift
+//  PTennis
+//
+//  Created by Мирсаит Сабирзянов on 20.04.2024.
+//
+
+import Foundation
+import FirebaseAuth
+
+struct AuthResultModel {
+    var uid: String
+    var email: String
+    
+    init(user: User) {
+        self.uid = user.uid
+        self.email = user.email ?? ""
+    }
+}
+
+final class AuthManager {
+    
+    static let shared = AuthManager()
+    private init() { }
+    
+    func getAuthUser() throws -> AuthResultModel {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return AuthResultModel(user: user)
+    }
+    
+    @discardableResult
+    func createUser(email: String, password: String) async throws -> AuthResultModel {
+        let authRes = try await Auth.auth().createUser(withEmail: email, password: password)
+        let result = AuthResultModel(user: authRes.user)
+        return result
+    }
+    
+    @discardableResult
+    func signInUser(email: String, password: String) async throws -> AuthResultModel {
+        let authRes = try await Auth.auth().signIn(withEmail: email, password: password)
+        let result = AuthResultModel(user: authRes.user)
+        return result
+    }
+    
+    func signOut() throws {
+        try Auth.auth().signOut()
+    }
+    
+}
