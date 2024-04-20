@@ -12,6 +12,12 @@
 		3B6455E32BD3156B0016DD54 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455E22BD3156B0016DD54 /* AuthManager.swift */; };
 		3B6455E52BD31AA50016DD54 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455E42BD31AA50016DD54 /* RootView.swift */; };
 		3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455E62BD3226C0016DD54 /* PlayersViewModel.swift */; };
+		3B6455EE2BD408240016DD54 /* AddPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455ED2BD408240016DD54 /* AddPlayerView.swift */; };
+		3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F02BD40F170016DD54 /* TextField+extension.swift */; };
+		3B6455F42BD410820016DD54 /* CustomTextField in Frameworks */ = {isa = PBXBuildFile; productRef = 3B6455F32BD410820016DD54 /* CustomTextField */; };
+		3B6455F62BD416730016DD54 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */; };
+		3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F72BD417D80016DD54 /* AddPlayerViewModel.swift */; };
+		3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */; };
 		3B74C08C2BC01176000A75A9 /* PTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74C08B2BC01176000A75A9 /* PTennisApp.swift */; };
 		3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74C08D2BC01176000A75A9 /* ContentView.swift */; };
 		3B74C0902BC01177000A75A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B74C08F2BC01177000A75A9 /* Assets.xcassets */; };
@@ -60,6 +66,11 @@
 		3B6455E22BD3156B0016DD54 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		3B6455E42BD31AA50016DD54 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		3B6455E62BD3226C0016DD54 /* PlayersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersViewModel.swift; sourceTree = "<group>"; };
+		3B6455ED2BD408240016DD54 /* AddPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerView.swift; sourceTree = "<group>"; };
+		3B6455F02BD40F170016DD54 /* TextField+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+extension.swift"; sourceTree = "<group>"; };
+		3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
+		3B6455F72BD417D80016DD54 /* AddPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerViewModel.swift; sourceTree = "<group>"; };
+		3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderToggleView.swift; sourceTree = "<group>"; };
 		3B74C0882BC01176000A75A9 /* PTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B74C08B2BC01176000A75A9 /* PTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTennisApp.swift; sourceTree = "<group>"; };
 		3B74C08D2BC01176000A75A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -100,6 +111,7 @@
 				3BDB87262BD2B2AD00E3135E /* FirebaseStorageCombine-Community in Frameworks */,
 				3BDB87202BD2B2AD00E3135E /* FirebaseRemoteConfig in Frameworks */,
 				3BDB86FC2BD2B2AD00E3135E /* FirebaseAppDistribution-Beta in Frameworks */,
+				3B6455F42BD410820016DD54 /* CustomTextField in Frameworks */,
 				3BDB87002BD2B2AD00E3135E /* FirebaseAuthCombine-Community in Frameworks */,
 				3BDB871E2BD2B2AD00E3135E /* FirebasePerformance in Frameworks */,
 				3BDB87162BD2B2AD00E3135E /* FirebaseInAppMessagingSwift-Beta in Frameworks */,
@@ -125,9 +137,12 @@
 		3B5B63532BD273B20091C354 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3B6455EF2BD40EF30016DD54 /* Extentions */,
 				3B5B63512BD272D70091C354 /* GreyButtonView.swift */,
 				3BDB86EC2BD2901100E3135E /* BackButtonView.swift */,
 				3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */,
+				3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */,
+				3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -152,6 +167,49 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		3B6455E82BD4068F0016DD54 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3B6455F72BD417D80016DD54 /* AddPlayerViewModel.swift */,
+				3B6455E62BD3226C0016DD54 /* PlayersViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		3B6455EA2BD406AD0016DD54 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3BDB87312BD2CABD00E3135E /* PlayersView.swift */,
+				3BDB87352BD2EEFF00E3135E /* PlayerCardView.swift */,
+				3B6455ED2BD408240016DD54 /* AddPlayerView.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		3B6455EB2BD406C10016DD54 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				3B74C08B2BC01176000A75A9 /* PTennisApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		3B6455EC2BD407540016DD54 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				3BDB872F2BD2C6FF00E3135E /* DataManager.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		3B6455EF2BD40EF30016DD54 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				3B6455F02BD40F170016DD54 /* TextField+extension.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		3B74C07F2BC01176000A75A9 = {
 			isa = PBXGroup;
 			children = (
@@ -171,12 +229,12 @@
 		3B74C08A2BC01176000A75A9 /* PTennis */ = {
 			isa = PBXGroup;
 			children = (
+				3B6455EC2BD407540016DD54 /* API */,
+				3B6455EB2BD406C10016DD54 /* App */,
 				3BDB87332BD2CAC300E3135E /* Players */,
 				3B5B63562BD28BB80091C354 /* Auth */,
 				3B5B63502BD272AA0091C354 /* Helpers */,
-				3B74C08B2BC01176000A75A9 /* PTennisApp.swift */,
 				3B74C08D2BC01176000A75A9 /* ContentView.swift */,
-				3BDB872F2BD2C6FF00E3135E /* DataManager.swift */,
 				3B74C08F2BC01177000A75A9 /* Assets.xcassets */,
 				3BDB87272BD2B34700E3135E /* GoogleService-Info.plist */,
 				3B74C0912BC01177000A75A9 /* Preview Content */,
@@ -195,10 +253,9 @@
 		3BDB87332BD2CAC300E3135E /* Players */ = {
 			isa = PBXGroup;
 			children = (
+				3B6455EA2BD406AD0016DD54 /* UI */,
+				3B6455E82BD4068F0016DD54 /* ViewModels */,
 				3BDB87342BD2CACE00E3135E /* Models */,
-				3BDB87312BD2CABD00E3135E /* PlayersView.swift */,
-				3B6455E62BD3226C0016DD54 /* PlayersViewModel.swift */,
-				3BDB87352BD2EEFF00E3135E /* PlayerCardView.swift */,
 			);
 			path = Players;
 			sourceTree = "<group>";
@@ -255,6 +312,7 @@
 				3BDB87212BD2B2AD00E3135E /* FirebaseRemoteConfigSwift */,
 				3BDB87232BD2B2AD00E3135E /* FirebaseStorage */,
 				3BDB87252BD2B2AD00E3135E /* FirebaseStorageCombine-Community */,
+				3B6455F32BD410820016DD54 /* CustomTextField */,
 			);
 			productName = PTennis;
 			productReference = 3B74C0882BC01176000A75A9 /* PTennis.app */;
@@ -286,6 +344,7 @@
 			mainGroup = 3B74C07F2BC01176000A75A9;
 			packageReferences = (
 				3BDB86F02BD2B2AD00E3135E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				3B6455F22BD410820016DD54 /* XCRemoteSwiftPackageReference "CustomTextField" */,
 			);
 			productRefGroup = 3B74C0892BC01176000A75A9 /* Products */;
 			projectDirPath = "";
@@ -319,6 +378,8 @@
 				3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */,
 				3B6455E32BD3156B0016DD54 /* AuthManager.swift in Sources */,
 				3B6455E52BD31AA50016DD54 /* RootView.swift in Sources */,
+				3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */,
+				3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */,
 				3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */,
 				3B5B63522BD272D70091C354 /* GreyButtonView.swift in Sources */,
 				3BDB872A2BD2B3C300E3135E /* SignUpView.swift in Sources */,
@@ -327,8 +388,11 @@
 				3BDB872E2BD2C1E900E3135E /* Player.swift in Sources */,
 				3BDB87362BD2EEFF00E3135E /* PlayerCardView.swift in Sources */,
 				3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */,
+				3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */,
 				3BDB87322BD2CABD00E3135E /* PlayersView.swift in Sources */,
 				3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */,
+				3B6455EE2BD408240016DD54 /* AddPlayerView.swift in Sources */,
+				3B6455F62BD416730016DD54 /* CustomTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +610,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3B6455F22BD410820016DD54 /* XCRemoteSwiftPackageReference "CustomTextField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MAAlsaleh0/CustomTextField.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		3BDB86F02BD2B2AD00E3135E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -557,6 +629,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3B6455F32BD410820016DD54 /* CustomTextField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3B6455F22BD410820016DD54 /* XCRemoteSwiftPackageReference "CustomTextField" */;
+			productName = CustomTextField;
+		};
 		3BDB86F12BD2B2AD00E3135E /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3BDB86F02BD2B2AD00E3135E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

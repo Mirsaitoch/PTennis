@@ -39,5 +39,5 @@ struct PlayerCardView: View {
 }
 
 #Preview {
-    PlayerCardView(num: "1", player: Player(id: "eoirngveoirngeroingeorin", name: "Mirsait", surname: "Sabirzyanov", rating: 10, gender: "Male", age: 20, phone: 89872891527, email: "oirnfreoi@entg.roti"))
+    PlayerCardView(num: "1", player: Player(id: "eoirngveoirngeroingeorin", name: "Mirsait", surname: "Sabirzyanov", rating: 10, gender: "Male", age: 20, phone: "89872891527", email: "oirnfreoi@entg.roti"))
 }

@@ -15,7 +15,7 @@ struct Player: Identifiable, Codable {
     var rating: Int?
     var gender: String?
     var age: Int?
-    var phone: Int?
+    var phone: String?
     var email: String?
 }
 

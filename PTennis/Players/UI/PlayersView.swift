@@ -1,18 +1,22 @@
-//
-//  PlayersView.swift
-//  PTennis
-//
-//  Created by Мирсаит Сабирзянов on 19.04.2024.
-//
-
-import SwiftUI
+import Combine
 import FirebaseCore
 import FirebaseFirestore
+import SwiftUI
 
 @MainActor
 final class PlayersViewModel: ObservableObject {
     
     @Published private(set) var players: [Player] = []
+    private var dataManager = DataManager.shared
+    private var cancellables: Set<AnyCancellable> = []
+    
+    init() {
+        dataManager.$players
+            .sink { [weak self] players in
+                self?.players = players
+            }
+            .store(in: &cancellables)
+    }
     
     func logOut() throws {
         try AuthManager.shared.signOut()
@@ -28,6 +32,7 @@ struct PlayersView: View {
     @StateObject var viewModel = PlayersViewModel()
     @Binding var showSignInView: Bool
     let authUser = try? AuthManager.shared.getAuthUser()
+    @State private var showAddSheet = false
     
     var body: some View {
         NavigationStack {
@@ -37,7 +42,9 @@ struct PlayersView: View {
                     .task {
                         try? await viewModel.getAllPlayers()
                     }
-            } else{
+                Text("id: \(authUser?.uid ?? "хуй тебе")")
+                
+            } else {
                 ScrollView {
                     VStack {
                         ForEach(Array(viewModel.players.enumerated()), id: \.element.id) { index, player in
@@ -50,7 +57,18 @@ struct PlayersView: View {
                     }
                 }
             }
-            
+        }
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing){
+                Button {
+                    showAddSheet.toggle()
+                } label: {
+                    Image(systemName: "person.badge.plus")
+                }
+            }
+        }
+        .sheet(isPresented: $showAddSheet) {
+            AddPlayerView()
         }
     }
 }
@@ -62,7 +80,7 @@ func addPlayer() async throws {
                         rating: 10,
                         gender: "Female",
                         age: 20,
-                        phone: 89872891527,
+                        phone: "89872891527",
                         email: "erimoerim@oeitng.t")
     
     try await DataManager.shared.addPlayer(player: player)
