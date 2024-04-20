@@ -31,15 +31,26 @@ struct PlayersView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                ForEach(Array(viewModel.players.enumerated()), id: \.element.id) { index, player in
-                    PlayerCardView(num: String(index + 1), player: player)
-                }
-                .navigationTitle("Top players")
-                .task {
-                    try? await viewModel.getAllPlayers()
+            if viewModel.players.isEmpty {
+                ProgressView()
+                    .navigationTitle("Top players")
+                    .task {
+                        try? await viewModel.getAllPlayers()
+                    }
+            } else{
+                ScrollView {
+                    VStack {
+                        ForEach(Array(viewModel.players.enumerated()), id: \.element.id) { index, player in
+                            PlayerCardView(num: String(index + 1), player: player)
+                        }
+                    }
+                    .navigationTitle("Top players")
+                    .task {
+                        try? await viewModel.getAllPlayers()
+                    }
                 }
             }
+            
         }
     }
 }

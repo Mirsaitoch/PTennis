@@ -13,7 +13,7 @@ struct PlayerCardView: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(.lightGreen)
-            .frame(minWidth: 100, maxWidth: .infinity, maxHeight: 70)
+            .frame(minWidth: 100, maxWidth: .infinity, minHeight: 70)
             .overlay {
                 HStack{
                     Text(num)
@@ -35,7 +35,6 @@ struct PlayerCardView: View {
                 }
             }
             .padding([.horizontal, .bottom], 10)
-
     }
 }
 
