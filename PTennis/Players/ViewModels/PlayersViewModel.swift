@@ -20,6 +20,7 @@ final class PlayersViewModel: ObservableObject {
     private var dataManager = DataManager.shared
     private var cancellables: Set<AnyCancellable> = []
     @Published var sorted_in_reverse_order = false
+
     
     init() {
         dataManager.$players

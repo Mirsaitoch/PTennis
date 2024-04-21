@@ -54,7 +54,7 @@ struct PlayersView: View {
                     Image(systemName: viewModel.sorted_in_reverse_order ? "arrow.down.circle" : "arrow.up.circle")
                 }
             }
-            ToolbarItem(placement: .topBarTrailing){
+            ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showAddSheet.toggle()
                 } label: {

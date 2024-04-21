@@ -9,10 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
 
+    @State private var selectedTab = "person"
 
     var body: some View {
         VStack(){
-            GreyButtonView(text: "Main screen!")
+            
+            Spacer()
+            
+            CustomTabBar(selectedTab: $selectedTab)
         }
         .navigationBarBackButtonHidden()
     }

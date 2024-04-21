@@ -22,6 +22,8 @@
 		3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74C08D2BC01176000A75A9 /* ContentView.swift */; };
 		3B74C0902BC01177000A75A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B74C08F2BC01177000A75A9 /* Assets.xcassets */; };
 		3B74C0932BC01177000A75A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B74C0922BC01177000A75A9 /* Preview Assets.xcassets */; };
+		3B7F5B072BD57C760085165B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B062BD57C760085165B /* CustomTabBar.swift */; };
+		3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B082BD586A00085165B /* TabCurve.swift */; };
 		3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EA2BD28EF500E3135E /* LogInView.swift */; };
 		3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EC2BD2901100E3135E /* BackButtonView.swift */; };
 		3BDB86EF2BD2959E00E3135E /* GreenButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */; };
@@ -76,6 +78,8 @@
 		3B74C08D2BC01176000A75A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3B74C08F2BC01177000A75A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B74C0922BC01177000A75A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		3B7F5B062BD57C760085165B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		3B7F5B082BD586A00085165B /* TabCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurve.swift; sourceTree = "<group>"; };
 		3BDB86EA2BD28EF500E3135E /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		3BDB86EC2BD2901100E3135E /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonView.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 		3B5B63532BD273B20091C354 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3B7F5B052BD57C570085165B /* CustomTabBar */,
 				3B6455EF2BD40EF30016DD54 /* Extentions */,
 				3B5B63512BD272D70091C354 /* GreyButtonView.swift */,
 				3BDB86EC2BD2901100E3135E /* BackButtonView.swift */,
@@ -248,6 +253,15 @@
 				3B74C0922BC01177000A75A9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		3B7F5B052BD57C570085165B /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				3B7F5B062BD57C760085165B /* CustomTabBar.swift */,
+				3B7F5B082BD586A00085165B /* TabCurve.swift */,
+			);
+			path = CustomTabBar;
 			sourceTree = "<group>";
 		};
 		3BDB87332BD2CAC300E3135E /* Players */ = {
@@ -378,6 +392,7 @@
 				3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */,
 				3B6455E32BD3156B0016DD54 /* AuthManager.swift in Sources */,
 				3B6455E52BD31AA50016DD54 /* RootView.swift in Sources */,
+				3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */,
 				3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */,
 				3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */,
 				3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */,
@@ -389,6 +404,7 @@
 				3BDB87362BD2EEFF00E3135E /* PlayerCardView.swift in Sources */,
 				3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */,
 				3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */,
+				3B7F5B072BD57C760085165B /* CustomTabBar.swift in Sources */,
 				3BDB87322BD2CABD00E3135E /* PlayersView.swift in Sources */,
 				3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */,
 				3B6455EE2BD408240016DD54 /* AddPlayerView.swift in Sources */,
