@@ -8,13 +8,21 @@
 import Foundation
 import SwiftUI
 
-struct Player: Identifiable, Codable {
+struct Player: Identifiable, Codable, Comparable {
+    static func < (lhs: Player, rhs: Player) -> Bool {
+        if lhs.name != rhs.name {
+            return lhs.name < rhs.name
+        } else {
+            return lhs.surname < rhs.surname
+        }
+    }
+    
     let id: String
     var name: String
-    var surname: String?
+    var surname: String
     var rating: Int?
     var gender: String?
-    var age: Int?
+    var age: Int
     var phone: String?
     var email: String?
 }

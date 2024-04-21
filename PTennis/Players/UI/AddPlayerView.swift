@@ -12,7 +12,7 @@ struct AddPlayerView: View {
     
     @State private var viewModel = AddPlayerViewModel()
     @Environment(\.dismiss) var dismiss
-
+    
     enum Field: Hashable {
         case nameSurname
         case rating
@@ -22,7 +22,7 @@ struct AddPlayerView: View {
     }
     
     @FocusState private var focusedField: Field?
-
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -33,11 +33,19 @@ struct AddPlayerView: View {
                         .frame(width: 125, height: 125)
                         .padding(.bottom, 50)
                         .padding(.top, 30)
-
+                    
                     Spacer()
                     
                     CustomTF(text: $viewModel.name_surname, placeholder: "Name Surname", ImageTF: Image(systemName: "person"), isPassword: false, StylesType: .Style2, KeyboardType: .default, color: nil)
                         .focused($focusedField, equals: .nameSurname)
+                    
+                    HStack {
+                        Text(viewModel.error_text)
+                            .foregroundColor(.red)
+                            .font(.footnote)
+                        Spacer()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                     
                     CustomTF(text: $viewModel.rating, placeholder: "Rating", ImageTF: Image(systemName: "star"), isPassword: false, StylesType: .Style2, KeyboardType: .numberPad, color: focusedField == .rating ? .lightGreen : nil)
                         .focused($focusedField, equals: .rating)
@@ -60,14 +68,16 @@ struct AddPlayerView: View {
                             catch {
                                 print("error create user")
                             }
+                            if viewModel.error_text == "" {
+                                dismiss()
+                            }
                         }
-                        dismiss()
                     } label: {
                         GreenButtonView(text: "Add player")
                     }
                 }
                 .scrollClipDisabled()
-
+                
                 Spacer()
                 
             }
@@ -80,7 +90,7 @@ struct AddPlayerView: View {
                 }
             }
         }
-            .environment(\.colorScheme, .light)
+        .environment(\.colorScheme, .light)
     }
     
 }

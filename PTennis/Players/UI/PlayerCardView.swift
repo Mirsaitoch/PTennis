@@ -22,7 +22,7 @@ struct PlayerCardView: View {
                         .resizable()
                         .frame(width: 50, height: 50)
                     VStack(alignment: .leading) {
-                        Text("\(player.name) \(player.surname ?? "")")
+                        Text("\(player.name) \(player.surname)")
                             .font(.system(size: 25))
                             .bold()
                         Text("age: \(player.age ?? 0)")

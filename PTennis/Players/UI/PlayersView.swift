@@ -1,31 +1,6 @@
-import Combine
 import FirebaseCore
 import FirebaseFirestore
 import SwiftUI
-
-@MainActor
-final class PlayersViewModel: ObservableObject {
-    
-    @Published private(set) var players: [Player] = []
-    private var dataManager = DataManager.shared
-    private var cancellables: Set<AnyCancellable> = []
-    
-    init() {
-        dataManager.$players
-            .sink { [weak self] players in
-                self?.players = players
-            }
-            .store(in: &cancellables)
-    }
-    
-    func logOut() throws {
-        try AuthManager.shared.signOut()
-    }
-    
-    func getAllPlayers() async throws {
-        self.players = try await DataManager().getAllPlayers()
-    }
-}
 
 struct PlayersView: View {
     @StateObject private var dataManager = DataManager()
@@ -34,36 +9,56 @@ struct PlayersView: View {
     let authUser = try? AuthManager.shared.getAuthUser()
     @State private var showAddSheet = false
     
+    
     var body: some View {
         NavigationStack {
-            if viewModel.players.isEmpty {
-                ProgressView()
-                    .navigationTitle("Top players")
-                    .task {
-                        try? await viewModel.getAllPlayers()
-                    }
-                Text("id: \(authUser?.uid ?? "хуй тебе")")
+            ZStack {
+                Color.paleGreen
+                    .ignoresSafeArea()
                 
-            } else {
-                ScrollView {
-                    VStack {
-                        ForEach(Array(viewModel.players.enumerated()), id: \.element.id) { index, player in
-                            PlayerCardView(num: String(index + 1), player: player)
+                if viewModel.players.isEmpty {
+                    ProgressView()
+                        .navigationTitle("Top players")
+                        .task {
+                            try? await viewModel.getAllPlayers()
                         }
-                    }
-                    .navigationTitle("Top players")
-                    .task {
-                        try? await viewModel.getAllPlayers()
+                    Spacer()
+                    Text("id: \(authUser?.uid ?? "хуй тебе")")
+                        .foregroundStyle(.black)
+                    
+                } else {
+                    ScrollView {
+                        VStack {
+                            ForEach(Array(viewModel.players.enumerated()), id: \.element.id) { index, player in
+                                PlayerCardView(num: String(index + 1), player: player)
+                            }
+                        }
+                        .navigationTitle("Top players")
+                        .task {
+                            try? await viewModel.getAllPlayers()
+                        }
                     }
                 }
             }
         }
         .toolbar {
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    withAnimation {
+                        viewModel.sorted_in_reverse_order.toggle()
+                    }
+                    viewModel.sorted_in_reverse_order ? viewModel.sortedInReverse() : viewModel.sorted()
+                    print(viewModel.sorted_in_reverse_order)
+                } label: {
+                    Image(systemName: viewModel.sorted_in_reverse_order ? "arrow.down.circle" : "arrow.up.circle")
+                }
+            }
             ToolbarItem(placement: .topBarTrailing){
                 Button {
                     showAddSheet.toggle()
                 } label: {
-                    Image(systemName: "person.badge.plus")
+                    Image(systemName: "person.badge.plus.circle")
                 }
             }
         }

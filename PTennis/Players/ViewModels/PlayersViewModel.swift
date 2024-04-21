@@ -4,24 +4,44 @@
 //
 //  Created by Мирсаит Сабирзянов on 20.04.2024.
 //
-
+import Combine
 import Foundation
-import SwiftUI
 import Firebase
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import SwiftUI
 
-//@MainActor
-//final class PlayersViewModel: ObservableObject {
-//    
-//    @Published private(set) var players: [Player] = []
-//    
-//    func logOut() throws {
-//        try AuthManager.shared.signOut()
-//    }
-//    
-//    func getAllPlayers() async throws {
-//        self.players = try await DataManager().getAllPlayers()
-//    }
-//}
+
+@MainActor
+final class PlayersViewModel: ObservableObject {
+    
+    @Published private(set) var players: [Player] = []
+    private var dataManager = DataManager.shared
+    private var cancellables: Set<AnyCancellable> = []
+    @Published var sorted_in_reverse_order = false
+    
+    init() {
+        dataManager.$players
+            .sink { [weak self] players in
+                self?.players = players.sorted()
+            }
+            .store(in: &cancellables)
+    }
+    
+    func logOut() throws {
+        try AuthManager.shared.signOut()
+    }
+    
+    func getAllPlayers() async throws {
+        self.players = try await DataManager().getAllPlayers()
+    }
+    
+    func sortedInReverse() {
+        self.players = players.sorted(by: >)
+    }
+    
+    func sorted() {
+        self.players = players.sorted(by: <)
+    }
+}

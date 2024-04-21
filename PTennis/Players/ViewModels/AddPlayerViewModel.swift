@@ -10,7 +10,7 @@ import SwiftUI
 
 @Observable
 final class AddPlayerViewModel {
-    
+        
     var name_surname: String = ""
     var rating: String = ""
     var age: String = ""
@@ -18,11 +18,13 @@ final class AddPlayerViewModel {
     var phone: String = ""
     var email: String = ""
     
+    var error_text = ""
+    
     var name_surname_array: [String] {
         return name_surname.split(separator: " ").map(String.init)
     }
 
-    var ageInt : Int? {
+    var ageInt : Int {
         Int(age) ?? 0
     }
     
@@ -41,6 +43,7 @@ final class AddPlayerViewModel {
     func createNewPlayer() async throws {
         guard name_surname_array.count >= 2 else {
             print("error")
+            error_text = "Fill in the fields marked with an asterisk"
             return
         }
         
@@ -53,7 +56,9 @@ final class AddPlayerViewModel {
                             phone: phone,
                             email: email)
         
+        error_text = ""
         try await DataManager.shared.addPlayer(player: player)
+                
     }
     
     func generateUniqueUUID() -> String {

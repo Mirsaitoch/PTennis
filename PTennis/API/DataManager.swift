@@ -47,6 +47,7 @@ class DataManager: ObservableObject {
                     if let player = try? change.document.data(as: Player.self) {
                         DispatchQueue.main.async {
                             self.players.append(player)
+                            self.players.sort()
                         }
                     }
                 case .modified:
