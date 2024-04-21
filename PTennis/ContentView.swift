@@ -9,19 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State private var selectedTab = "person"
+    @Binding var selectedTab: String
+    @Binding var showSignInView: Bool
 
     var body: some View {
-        VStack(){
-            
-            Spacer()
-            
-            CustomTabBar(selectedTab: $selectedTab)
+        ZStack(){
+            Color
+                .paleGreen
+                .ignoresSafeArea()
+            VStack {
+                switch selectedTab {
+                case "tennis.racket.circle":
+                    PlayersView(showSignInView: $showSignInView)
+                case "trophy":
+                    MatchesView()
+                case "person":
+                    ProfileView()
+                default:
+                    ProfileView()
+                }
+//                CustomTabBar(selectedTab: $selectedTab)
+            }
         }
         .navigationBarBackButtonHidden()
     }
 }
 
 #Preview {
-    ContentView()
+    ContentView(selectedTab: .constant(""), showSignInView: .constant(false))
 }

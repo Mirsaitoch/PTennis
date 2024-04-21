@@ -10,12 +10,18 @@ import SwiftUI
 struct RootView: View {
     
     @State private var showSignInView: Bool = false
-    
+    @State private var selectedTab: String = "tennis.racket.circle"
+
     var body: some View {
-        ZStack {
-            NavigationStack {
-                PlayersView(showSignInView: $showSignInView)
-            }
+        ZStack(alignment: .bottom) {
+            
+                NavigationStack {
+                    VStack {
+                        ContentView(selectedTab: $selectedTab, showSignInView: $showSignInView)
+                    }
+                }
+            
+            CustomTabBar(selectedTab: $selectedTab)
         }
         .onAppear {
             let authUser = try? AuthManager.shared.getAuthUser()

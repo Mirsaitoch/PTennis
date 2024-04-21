@@ -43,5 +43,5 @@ struct TabCurve: Shape {
 }
 
 #Preview {
-    ContentView()
+    ContentView(selectedTab: .constant("trophy"), showSignInView: .constant(false))
 }

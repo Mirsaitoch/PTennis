@@ -9,7 +9,6 @@ struct PlayersView: View {
     let authUser = try? AuthManager.shared.getAuthUser()
     @State private var showAddSheet = false
     
-    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -58,7 +57,7 @@ struct PlayersView: View {
                 Button {
                     showAddSheet.toggle()
                 } label: {
-                    Image(systemName: "person.badge.plus.circle")
+                    Image(systemName: "person.badge.plus")
                 }
             }
         }

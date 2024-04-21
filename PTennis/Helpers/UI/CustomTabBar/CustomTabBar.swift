@@ -23,7 +23,7 @@ struct CustomTabBar: View {
         }
         .padding()
         .background(Color
-            .paleGreen
+            .lightGreen
             .clipShape(TabCurve(tabPoint: getCurvePoints() - 15)))
         .cornerRadius(20.0)
         .padding(.horizontal)
@@ -56,7 +56,7 @@ struct CustomTabBar: View {
 }
 
 #Preview {
-    ContentView()
+    CustomTabBar(selectedTab: .constant("tennis.racket.circle"))
 }
 
 struct TabBarButton: View {

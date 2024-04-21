@@ -24,6 +24,8 @@
 		3B74C0932BC01177000A75A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B74C0922BC01177000A75A9 /* Preview Assets.xcassets */; };
 		3B7F5B072BD57C760085165B /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B062BD57C760085165B /* CustomTabBar.swift */; };
 		3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B082BD586A00085165B /* TabCurve.swift */; };
+		3B7F5B0C2BD591D90085165B /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B0B2BD591D90085165B /* MatchesView.swift */; };
+		3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B0E2BD5920B0085165B /* ProfileView.swift */; };
 		3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EA2BD28EF500E3135E /* LogInView.swift */; };
 		3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EC2BD2901100E3135E /* BackButtonView.swift */; };
 		3BDB86EF2BD2959E00E3135E /* GreenButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */; };
@@ -80,6 +82,8 @@
 		3B74C0922BC01177000A75A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		3B7F5B062BD57C760085165B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		3B7F5B082BD586A00085165B /* TabCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurve.swift; sourceTree = "<group>"; };
+		3B7F5B0B2BD591D90085165B /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
+		3B7F5B0E2BD5920B0085165B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3BDB86EA2BD28EF500E3135E /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		3BDB86EC2BD2901100E3135E /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonView.swift; sourceTree = "<group>"; };
@@ -234,6 +238,8 @@
 		3B74C08A2BC01176000A75A9 /* PTennis */ = {
 			isa = PBXGroup;
 			children = (
+				3B7F5B0D2BD591F80085165B /* Profile */,
+				3B7F5B0A2BD591B20085165B /* Matches */,
 				3B6455EC2BD407540016DD54 /* API */,
 				3B6455EB2BD406C10016DD54 /* App */,
 				3BDB87332BD2CAC300E3135E /* Players */,
@@ -262,6 +268,22 @@
 				3B7F5B082BD586A00085165B /* TabCurve.swift */,
 			);
 			path = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		3B7F5B0A2BD591B20085165B /* Matches */ = {
+			isa = PBXGroup;
+			children = (
+				3B7F5B0B2BD591D90085165B /* MatchesView.swift */,
+			);
+			path = Matches;
+			sourceTree = "<group>";
+		};
+		3B7F5B0D2BD591F80085165B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				3B7F5B0E2BD5920B0085165B /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		3BDB87332BD2CAC300E3135E /* Players */ = {
@@ -395,6 +417,7 @@
 				3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */,
 				3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */,
 				3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */,
+				3B7F5B0C2BD591D90085165B /* MatchesView.swift in Sources */,
 				3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */,
 				3B5B63522BD272D70091C354 /* GreyButtonView.swift in Sources */,
 				3BDB872A2BD2B3C300E3135E /* SignUpView.swift in Sources */,
@@ -402,6 +425,7 @@
 				3B74C08C2BC01176000A75A9 /* PTennisApp.swift in Sources */,
 				3BDB872E2BD2C1E900E3135E /* Player.swift in Sources */,
 				3BDB87362BD2EEFF00E3135E /* PlayerCardView.swift in Sources */,
+				3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */,
 				3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */,
 				3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */,
 				3B7F5B072BD57C760085165B /* CustomTabBar.swift in Sources */,
