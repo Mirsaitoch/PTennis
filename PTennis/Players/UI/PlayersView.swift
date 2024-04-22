@@ -41,7 +41,6 @@ struct PlayersView: View {
             }
         }
         .toolbar {
-            
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     withAnimation {
@@ -67,18 +66,18 @@ struct PlayersView: View {
     }
 }
 
-func addPlayer() async throws {
-    let player = Player(id: "\(Int.random(in: 0...1000000000))",
-                        name: "Mirsaitik",
-                        surname: "Sabirzyanov",
-                        rating: 10,
-                        gender: "Female",
-                        age: 20,
-                        phone: "89872891527",
-                        email: "erimoerim@oeitng.t")
-    
-    try await DataManager.shared.addPlayer(player: player)
-}
+//func addPlayer() async throws {
+//    let player = Player(id: "\(Int.random(in: 0...1000000000))",
+//                        name: "Mirsaitik",
+//                        surname: "Sabirzyanov",
+//                        rating: 10,
+//                        gender: "Female",
+//                        age: 20,
+//                        phone: "89872891527",
+//                        email: "erimoerim@oeitng.t")
+//    
+//    try await DataManager.shared.addPlayer(player: player)
+//}
 
 
 #Preview {

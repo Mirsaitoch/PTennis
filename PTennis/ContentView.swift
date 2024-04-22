@@ -24,9 +24,9 @@ struct ContentView: View {
                 case "trophy":
                     MatchesView()
                 case "person":
-                    ProfileView()
+                    ProfileView(showSignInView: $showSignInView)
                 default:
-                    ProfileView()
+                    MatchesView()
                 }
 //                CustomTabBar(selectedTab: $selectedTab)
             }

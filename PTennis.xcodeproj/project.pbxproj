@@ -18,6 +18,11 @@
 		3B6455F62BD416730016DD54 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */; };
 		3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F72BD417D80016DD54 /* AddPlayerViewModel.swift */; };
 		3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */; };
+		3B718A802BD64B0900434CA5 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B718A7F2BD64B0900434CA5 /* ProfileViewModel.swift */; };
+		3B718A822BD64F0800434CA5 /* AddMatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B718A812BD64F0800434CA5 /* AddMatchView.swift */; };
+		3B718A842BD6509300434CA5 /* AddMatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B718A832BD6509300434CA5 /* AddMatchViewModel.swift */; };
+		3B718A882BD6546400434CA5 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B718A872BD6546400434CA5 /* Match.swift */; };
+		3B718A8A2BD6682B00434CA5 /* MatchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B718A892BD6682B00434CA5 /* MatchTextFieldView.swift */; };
 		3B74C08C2BC01176000A75A9 /* PTennisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74C08B2BC01176000A75A9 /* PTennisApp.swift */; };
 		3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B74C08D2BC01176000A75A9 /* ContentView.swift */; };
 		3B74C0902BC01177000A75A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B74C08F2BC01177000A75A9 /* Assets.xcassets */; };
@@ -75,6 +80,11 @@
 		3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		3B6455F72BD417D80016DD54 /* AddPlayerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPlayerViewModel.swift; sourceTree = "<group>"; };
 		3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderToggleView.swift; sourceTree = "<group>"; };
+		3B718A7F2BD64B0900434CA5 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		3B718A812BD64F0800434CA5 /* AddMatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMatchView.swift; sourceTree = "<group>"; };
+		3B718A832BD6509300434CA5 /* AddMatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMatchViewModel.swift; sourceTree = "<group>"; };
+		3B718A872BD6546400434CA5 /* Match.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Match.swift; sourceTree = "<group>"; };
+		3B718A892BD6682B00434CA5 /* MatchTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchTextFieldView.swift; sourceTree = "<group>"; };
 		3B74C0882BC01176000A75A9 /* PTennis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PTennis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B74C08B2BC01176000A75A9 /* PTennisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PTennisApp.swift; sourceTree = "<group>"; };
 		3B74C08D2BC01176000A75A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -152,6 +162,7 @@
 				3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */,
 				3B6455F52BD416730016DD54 /* CustomTextFieldView.swift */,
 				3B6455F92BD41FEE0016DD54 /* GenderToggleView.swift */,
+				3B718A892BD6682B00434CA5 /* MatchTextFieldView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -274,6 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				3B7F5B0B2BD591D90085165B /* MatchesView.swift */,
+				3B718A812BD64F0800434CA5 /* AddMatchView.swift */,
+				3B718A832BD6509300434CA5 /* AddMatchViewModel.swift */,
+				3B718A872BD6546400434CA5 /* Match.swift */,
 			);
 			path = Matches;
 			sourceTree = "<group>";
@@ -282,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				3B7F5B0E2BD5920B0085165B /* ProfileView.swift */,
+				3B718A7F2BD64B0900434CA5 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -417,12 +432,16 @@
 				3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */,
 				3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */,
 				3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */,
+				3B718A842BD6509300434CA5 /* AddMatchViewModel.swift in Sources */,
 				3B7F5B0C2BD591D90085165B /* MatchesView.swift in Sources */,
 				3B74C08E2BC01176000A75A9 /* ContentView.swift in Sources */,
 				3B5B63522BD272D70091C354 /* GreyButtonView.swift in Sources */,
 				3BDB872A2BD2B3C300E3135E /* SignUpView.swift in Sources */,
+				3B718A822BD64F0800434CA5 /* AddMatchView.swift in Sources */,
 				3B5B634F2BD26E110091C354 /* WelcomeView.swift in Sources */,
 				3B74C08C2BC01176000A75A9 /* PTennisApp.swift in Sources */,
+				3B718A8A2BD6682B00434CA5 /* MatchTextFieldView.swift in Sources */,
+				3B718A802BD64B0900434CA5 /* ProfileViewModel.swift in Sources */,
 				3BDB872E2BD2C1E900E3135E /* Player.swift in Sources */,
 				3BDB87362BD2EEFF00E3135E /* PlayerCardView.swift in Sources */,
 				3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */,
@@ -433,6 +452,7 @@
 				3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */,
 				3B6455EE2BD408240016DD54 /* AddPlayerView.swift in Sources */,
 				3B6455F62BD416730016DD54 /* CustomTextFieldView.swift in Sources */,
+				3B718A882BD6546400434CA5 /* Match.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

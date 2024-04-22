@@ -79,7 +79,6 @@ struct AddPlayerView: View {
                 .scrollClipDisabled()
                 
                 Spacer()
-                
             }
             .padding()
             .navigationTitle("New player")

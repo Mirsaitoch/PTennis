@@ -83,10 +83,10 @@ class DataManager: ObservableObject {
         let userData : [String: Any] =
         ["id": player.id,
          "name": player.name,
-         "surname": player.surname ?? "Surname",
+         "surname": player.surname,
          "gender": player.gender ?? "Male",
          "rating": player.rating ?? 10,
-         "age": player.age ?? 18,
+         "age": player.age,
          "phone": player.phone ?? "89999999999",
          "email": player.email ?? "test@mail.ru"]
         
@@ -94,6 +94,24 @@ class DataManager: ObservableObject {
             .collection("Players")
             .document("\(player.id)")
             .setData(userData, merge: false)
+    }
+    
+    func addMatch(match: Match) async throws {
+        
+        let matchData : [String: Any] =
+        ["id": match.id,
+         "date": match.date,
+         "player1": match.player1,
+         "player2": match.player2,
+         "score1": match.score1,
+         "score2": match.score2,
+         "score3": match.score3
+        ]
+        
+        try await Firestore.firestore()
+            .collection("Matches")
+            .document("\(match.id)")
+            .setData(matchData, merge: false)
     }
     
 //    func deletePlayer(at indexSet: IndexSet) {

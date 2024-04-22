@@ -14,7 +14,6 @@ struct RootView: View {
 
     var body: some View {
         ZStack(alignment: .bottom) {
-            
                 NavigationStack {
                     VStack {
                         ContentView(selectedTab: $selectedTab, showSignInView: $showSignInView)
