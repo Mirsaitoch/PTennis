@@ -43,6 +43,8 @@ struct ProfileView: View {
             } label: {
                 GreenButtonView(text: "Log out")
             }
+            Spacer()
+
         }
         .sheet(isPresented: $showAddPlayerSheet) {
             AddPlayerView()

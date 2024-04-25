@@ -9,23 +9,21 @@ import SwiftUI
 
 struct MatchTextFieldView: View {
     
-    @Binding var score1: Int?
-    @Binding var score2: Int?
+    @Binding var score1: Int
+    @Binding var score2: Int
     @State var round_number: Int
-    
-    let size = [0, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 24, 26, 28, 30, 32]
-    
+
     var body: some View {
         
         RoundedRectangle(cornerRadius: 15)
             .fill(.lightGreen)
-            .frame(width: 180, height: 150)
+            .frame(width: 170, height: 120)
             .overlay {
                 VStack(alignment: .leading) {
                     Text("Round \(round_number)")
                         .font(.system(size: 20, design: .rounded))
                         .foregroundStyle(.dark)
-                        .padding([.top, .leading])
+                        .padding([.top, .leading], 20)
                         
                     HStack(alignment: .center) {
                         Spacer()
@@ -34,7 +32,7 @@ struct MatchTextFieldView: View {
                             ForEach((0...50), id: \.self)
                             {Text("\($0)")}
                         }
-                        .frame(width: 60, height: 90).clipped()
+                        .frame(width: 60, height: 80).clipped()
                         .pickerStyle(WheelPickerStyle())
                         
                         Text(" : ")
@@ -46,7 +44,7 @@ struct MatchTextFieldView: View {
                             ForEach((0...50), id: \.self)
                             {Text("\($0)")}
                         }
-                        .frame(width: 60, height: 90).clipped()
+                        .frame(width: 60, height: 80).clipped()
                         .pickerStyle(WheelPickerStyle())
                         
                         Spacer()
@@ -58,5 +56,5 @@ struct MatchTextFieldView: View {
 }
 
 #Preview {
-    MatchTextFieldView(score1: .constant(nil), score2: .constant(nil), round_number: 1)
+    MatchTextFieldView(score1: .constant(0), score2: .constant(0), round_number: 1)
 }

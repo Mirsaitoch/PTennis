@@ -51,8 +51,14 @@ class DataManager: ObservableObject {
                         }
                     }
                 case .modified:
-                    // Здесь можно обновить существующего игрока
-                    break
+                    if let player = try? change.document.data(as: Player.self) {
+                        if let index = self.players.firstIndex(where: { $0.id == player.id }) {
+                            DispatchQueue.main.async {
+                                self.players[index] = player
+                                self.players.sort()
+                            }
+                        }
+                    }
                 case .removed:
                     // Здесь можно удалить игрока из списка
                     break
@@ -112,6 +118,15 @@ class DataManager: ObservableObject {
             .collection("Matches")
             .document("\(match.id)")
             .setData(matchData, merge: false)
+    }
+    
+    func updatePlayerRating(player: Player, isWin: Bool) async throws {
+        
+        try await Firestore.firestore()
+            .collection("Players")
+            .document("\(player.id)")
+            .updateData(["rating": player.rating! + (isWin ? 1 : -1)])
+        
     }
     
 //    func deletePlayer(at indexSet: IndexSet) {
