@@ -14,6 +14,7 @@ struct ProfileView: View {
     @State private var showAddPlayerSheet = false
     @State private var showAddMatchSheet = false
     @AppStorage("isLoggedIn") var isLogin = false
+    @Binding var selectedTab: String
 
     var body: some View {
         VStack {
@@ -39,6 +40,7 @@ struct ProfileView: View {
                         try viewModel.logOut()
                         appViewModel.isLogin = false
                         isLogin = false
+                        selectedTab = "tennis.racket.circle"
                     }
                     catch {
                         print("error logOut")
@@ -61,5 +63,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(selectedTab: .constant(""))
 }

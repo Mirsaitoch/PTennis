@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+    @EnvironmentObject var appViewModel: AppViewModel
     @State var selectedTab = "tennis.racket.circle"
     
     var body: some View {
@@ -16,21 +16,20 @@ struct ContentView: View {
             Color
                 .paleGreen
                 .ignoresSafeArea()
-            VStack {
+            VStack{
                 switch selectedTab {
                 case "tennis.racket.circle":
                     PlayersView()
                 case "trophy":
                     MatchesView()
                 case "person":
-                    ProfileView()
+                    ProfileView(selectedTab: $selectedTab)
                 default:
                     MatchesView()
                 }
                 CustomTabBar(selectedTab: $selectedTab)
             }
         }
-        .navigationBarBackButtonHidden()
     }
 }
 
