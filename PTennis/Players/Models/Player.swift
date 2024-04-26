@@ -26,6 +26,6 @@ struct Player: Identifiable, Codable, Comparable, Hashable {
     var phone: String?
     var email: String?
     
-    static var example = Player(id: "qwertyu", name: "Test", surname: "Testovoy", age: 0)
+    static let example = Player(id: "qwertyu", name: "Test", surname: "Testovoy", age: 0)
 }
 

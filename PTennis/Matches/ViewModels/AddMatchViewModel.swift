@@ -46,18 +46,18 @@ final class AddMatchViewModel {
         "\(score3.0) : \(score3.1)"
     }
     
-    var matchResult: String {
+    var matchResult: Int {
         let player1Wins = [(score1.0 > score1.1), (score2.0 > score2.1), (score3.0 > score3.1)].filter { $0 }.count
         let player2Wins = [(score1.0 < score1.1), (score2.0 < score2.1), (score3.0 < score3.1)].filter { $0 }.count
 
         if player1Wins == player2Wins {
-            return "Draw"
+            return 0
         }
         if player1Wins > player2Wins {
-            return "1 Win"
+            return 1
         }
         else {
-            return "2 Win"
+            return 2
         }
     }
     
@@ -68,15 +68,18 @@ final class AddMatchViewModel {
     
     func createNewMatch() async throws {
         
-        let match = Match(id: generateUniqueUUID(), date: date, player1: player1?.id ?? "", player2: player2?.id ?? "", score1: score1_str, score2: score2_str, score3: score3_str)
+        let match = Match(id: generateUniqueUUID(), date: date, player1: player1?.id ?? "", player2: player2?.id ?? "", score1_1: score1.0, score1_2: score1.1, score2_1: score2.0, score2_2: score2.1, score3_1: score3.0, score3_2: score3.1, winner: matchResult)
         
         error_text = ""
         
         try await DataManager.shared.addMatch(match: match)
         
-        try await DataManager().updatePlayerRating(player: player1 ?? Player.example, isWin: matchResult == "1 Win")
+        if matchResult > 0 {
+            try await DataManager().updatePlayerRating(player: player1 ?? Player.example, isWin: matchResult == 1)
+            
+            try await DataManager().updatePlayerRating(player: player2 ?? Player.example, isWin: matchResult == 2)
+        }
         
-        try await DataManager().updatePlayerRating(player: player2 ?? Player.example, isWin: matchResult == "2 Win")
         
         //подсчет рейтинга у игроков
         

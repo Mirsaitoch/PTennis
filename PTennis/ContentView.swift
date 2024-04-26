@@ -20,7 +20,7 @@ struct ContentView: View {
             VStack {
                 switch selectedTab {
                 case "tennis.racket.circle":
-                    PlayersView(showSignInView: $showSignInView)
+                    PlayersView()
                 case "trophy":
                     MatchesView()
                 case "person":

@@ -15,7 +15,7 @@ struct PlayerCardView: View {
             .fill(.lightGreen)
             .frame(minWidth: 100, maxWidth: .infinity, minHeight: 70)
             .overlay {
-                HStack{
+                HStack {
                     Text(num)
                         .padding(.leading, 10)
                     Image(.playerLogo)
@@ -25,7 +25,7 @@ struct PlayerCardView: View {
                         Text("\(player.name) \(player.surname)")
                             .font(.system(size: 25))
                             .bold()
-                        Text("age: \(player.age ?? 0)")
+                        Text("age: \(player.age)")
                             .font(.footnote)
                     }
                     Spacer()
@@ -39,5 +39,5 @@ struct PlayerCardView: View {
 }
 
 #Preview {
-    PlayerCardView(num: "1", player: Player(id: "eoirngveoirngeroingeorin", name: "Mirsait", surname: "Sabirzyanov", rating: 10, gender: "Male", age: 20, phone: "89872891527", email: "oirnfreoi@entg.roti"))
+    PlayerCardView(num: "1", player: Player.example)
 }

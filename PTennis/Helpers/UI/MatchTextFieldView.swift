@@ -12,42 +12,41 @@ struct MatchTextFieldView: View {
     @Binding var score1: Int
     @Binding var score2: Int
     @State var round_number: Int
+    @State var width: CGFloat
+    @State var height: CGFloat
 
     var body: some View {
         
         RoundedRectangle(cornerRadius: 15)
             .fill(.lightGreen)
-            .frame(width: 170, height: 120)
+            .frame(width: width, height: height)
             .overlay {
                 VStack(alignment: .leading) {
                     Text("Round \(round_number)")
-                        .font(.system(size: 20, design: .rounded))
+                        .font(.system(size: 18, design: .rounded))
                         .foregroundStyle(.dark)
                         .padding([.top, .leading], 20)
                         
                     HStack(alignment: .center) {
-                        Spacer()
                         Picker("RUN", selection: $score1)
                         {
                             ForEach((0...50), id: \.self)
                             {Text("\($0)")}
                         }
-                        .frame(width: 60, height: 80).clipped()
+                        .frame(width: width / 2.45, height: 2 * height / 3).clipped()
                         .pickerStyle(WheelPickerStyle())
                         
-                        Text(" : ")
-                            .font(.system(size: 40))
-                            .bold()
+                        Text(":")                           .minimumScaleFactor(0.5)
                             .offset(y: -3)
+                            .bold()
                         Picker("RUN", selection: $score2)
                         {
                             ForEach((0...50), id: \.self)
                             {Text("\($0)")}
                         }
-                        .frame(width: 60, height: 80).clipped()
+                        .frame(width: width / 2.45, height: 2 * height / 3).clipped()
                         .pickerStyle(WheelPickerStyle())
                         
-                        Spacer()
                     }
                     Spacer()
                 }
@@ -56,5 +55,5 @@ struct MatchTextFieldView: View {
 }
 
 #Preview {
-    MatchTextFieldView(score1: .constant(0), score2: .constant(0), round_number: 1)
+    MatchTextFieldView(score1: .constant(0), score2: .constant(0), round_number: 1, width: 120, height: 120)
 }

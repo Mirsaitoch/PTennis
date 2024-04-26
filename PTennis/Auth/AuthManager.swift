@@ -10,7 +10,7 @@ import FirebaseAuth
 
 struct AuthResultModel {
     var uid: String
-    var email: String
+    var email: String?
     
     init(user: User) {
         self.uid = user.uid
@@ -34,15 +34,19 @@ final class AuthManager {
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthResultModel {
         let authRes = try await Auth.auth().createUser(withEmail: email, password: password)
-        let result = AuthResultModel(user: authRes.user)
-        return result
+        return AuthResultModel(user: authRes.user)
     }
     
     @discardableResult
     func signInUser(email: String, password: String) async throws -> AuthResultModel {
         let authRes = try await Auth.auth().signIn(withEmail: email, password: password)
-        let result = AuthResultModel(user: authRes.user)
-        return result
+        return AuthResultModel(user: authRes.user)
+    }
+    
+    @discardableResult
+    func signInAnonymously() async throws -> AuthResultModel {
+        let authRes = try await Auth.auth().signInAnonymously()
+        return AuthResultModel(user: authRes.user)
     }
     
     func signOut() throws {

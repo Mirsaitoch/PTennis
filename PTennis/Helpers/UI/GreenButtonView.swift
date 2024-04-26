@@ -25,6 +25,7 @@ struct GreenButtonView: View {
                 Text(text)
                     .font(.title)
                     .foregroundStyle(.dark)
+                    .bold()
             }
             .padding(.vertical, 20)
     }

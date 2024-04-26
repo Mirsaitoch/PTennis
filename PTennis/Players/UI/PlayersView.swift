@@ -5,7 +5,6 @@ import SwiftUI
 struct PlayersView: View {
     @StateObject private var dataManager = DataManager()
     @StateObject var viewModel = PlayersViewModel()
-    @Binding var showSignInView: Bool
     let authUser = try? AuthManager.shared.getAuthUser()
     @State private var showAddSheet = false
     
@@ -53,10 +52,12 @@ struct PlayersView: View {
                 }
             }
             ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    showAddSheet.toggle()
-                } label: {
-                    Image(systemName: "person.badge.plus")
+                if authUser?.email != "" {
+                    Button {
+                        showAddSheet.toggle()
+                    } label: {
+                        Image(systemName: "person.badge.plus")
+                    }
                 }
             }
         }
@@ -66,20 +67,6 @@ struct PlayersView: View {
     }
 }
 
-//func addPlayer() async throws {
-//    let player = Player(id: "\(Int.random(in: 0...1000000000))",
-//                        name: "Mirsaitik",
-//                        surname: "Sabirzyanov",
-//                        rating: 10,
-//                        gender: "Female",
-//                        age: 20,
-//                        phone: "89872891527",
-//                        email: "erimoerim@oeitng.t")
-//    
-//    try await DataManager.shared.addPlayer(player: player)
-//}
-
-
 #Preview {
-    PlayersView(showSignInView: .constant(false))
+    PlayersView()
 }

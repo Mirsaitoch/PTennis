@@ -29,11 +29,7 @@ final class PlayersViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
-    func logOut() throws {
-        try AuthManager.shared.signOut()
-    }
-    
+
     func getAllPlayers() async throws {
         self.players = try await DataManager().getAllPlayers()
     }

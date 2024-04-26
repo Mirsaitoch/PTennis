@@ -31,6 +31,8 @@
 		3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B082BD586A00085165B /* TabCurve.swift */; };
 		3B7F5B0C2BD591D90085165B /* MatchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B0B2BD591D90085165B /* MatchesView.swift */; };
 		3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B0E2BD5920B0085165B /* ProfileView.swift */; };
+		3BA0519E2BDC32F300815B9A /* MatchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0519D2BDC32F300815B9A /* MatchesViewModel.swift */; };
+		3BA051A02BDC34EA00815B9A /* MatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0519F2BDC34EA00815B9A /* MatchCardView.swift */; };
 		3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EA2BD28EF500E3135E /* LogInView.swift */; };
 		3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EC2BD2901100E3135E /* BackButtonView.swift */; };
 		3BDB86EF2BD2959E00E3135E /* GreenButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */; };
@@ -94,6 +96,8 @@
 		3B7F5B082BD586A00085165B /* TabCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurve.swift; sourceTree = "<group>"; };
 		3B7F5B0B2BD591D90085165B /* MatchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesView.swift; sourceTree = "<group>"; };
 		3B7F5B0E2BD5920B0085165B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		3BA0519D2BDC32F300815B9A /* MatchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewModel.swift; sourceTree = "<group>"; };
+		3BA0519F2BDC34EA00815B9A /* MatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCardView.swift; sourceTree = "<group>"; };
 		3BDB86EA2BD28EF500E3135E /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		3BDB86EC2BD2901100E3135E /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonView.swift; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				3B718A832BD6509300434CA5 /* AddMatchViewModel.swift */,
+				3BA0519D2BDC32F300815B9A /* MatchesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -321,6 +326,7 @@
 			children = (
 				3B7F5B0B2BD591D90085165B /* MatchesView.swift */,
 				3B718A812BD64F0800434CA5 /* AddMatchView.swift */,
+				3BA0519F2BDC34EA00815B9A /* MatchCardView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -454,6 +460,7 @@
 				3B6455E32BD3156B0016DD54 /* AuthManager.swift in Sources */,
 				3B6455E52BD31AA50016DD54 /* RootView.swift in Sources */,
 				3B7F5B092BD586A00085165B /* TabCurve.swift in Sources */,
+				3BA0519E2BDC32F300815B9A /* MatchesViewModel.swift in Sources */,
 				3B6455F12BD40F170016DD54 /* TextField+extension.swift in Sources */,
 				3B6455F82BD417D80016DD54 /* AddPlayerViewModel.swift in Sources */,
 				3B718A842BD6509300434CA5 /* AddMatchViewModel.swift in Sources */,
@@ -468,6 +475,7 @@
 				3B718A802BD64B0900434CA5 /* ProfileViewModel.swift in Sources */,
 				3BDB872E2BD2C1E900E3135E /* Player.swift in Sources */,
 				3BDB87362BD2EEFF00E3135E /* PlayerCardView.swift in Sources */,
+				3BA051A02BDC34EA00815B9A /* MatchCardView.swift in Sources */,
 				3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */,
 				3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */,
 				3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */,

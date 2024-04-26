@@ -27,7 +27,7 @@ struct AddMatchView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .trailing) {
+            VStack() {
                 ScrollView(showsIndicators: false) {
                     Image(.matchLogo)
                         .resizable()
@@ -62,7 +62,6 @@ struct AddMatchView: View {
                                 Spacer()
                             }
                         }
-                        .padding()
                     
                     RoundedRectangle(cornerRadius: 10)
                         .fill(.lightGreen)
@@ -86,16 +85,19 @@ struct AddMatchView: View {
                         }
                         .padding()
                     
-                    VStack{
-                        HStack {
-                            MatchTextFieldView(score1: $viewModel.score1.0, score2: $viewModel.score1.1, round_number: 1)
-                            
-                            MatchTextFieldView(score1: $viewModel.score2.0, score2: $viewModel.score2.1, round_number: 2)
-                        }
-                        MatchTextFieldView(score1: $viewModel.score3.0, score2: $viewModel.score3.1, round_number: 3)
-                        
+                    GeometryReader { proxy in
+                            HStack {
+                                MatchTextFieldView(score1: $viewModel.score1.0, score2: $viewModel.score1.1, round_number: 1, width: proxy.size.width * 0.33, height: proxy.size.height)
+                                
+                                MatchTextFieldView(score1: $viewModel.score2.0, score2: $viewModel.score2.1, round_number: 2, width: proxy.size.width * 0.33, height: proxy.size.height)
+                                
+                                MatchTextFieldView(score1: $viewModel.score3.0, score2: $viewModel.score3.1, round_number: 3, width: proxy.size.width * 0.33, height: proxy.size.height)
+                                Spacer()
+
+                            }
                     }
-                    .padding()
+                    .frame(height: 100)
+                    
                     
                     Button {
                         Task {
@@ -115,8 +117,6 @@ struct AddMatchView: View {
                     
                 }
                 .scrollClipDisabled()
-                Spacer()
-                
             }
             .padding()
             .navigationTitle("New match")

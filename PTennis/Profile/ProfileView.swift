@@ -19,15 +19,17 @@ struct ProfileView: View {
             Spacer()
             Text(authUser?.uid ?? "no id")
             Text(authUser?.email ?? "no email")
-            Button {
-                showAddPlayerSheet.toggle()
-            } label: {
-                GreenButtonView(text: " +  Add player")
-            }
-            Button {
-                showAddMatchSheet.toggle()
-            } label: {
-                GreenButtonView(text: " +  Add match")
+            if authUser?.email != "" {
+                Button {
+                    showAddPlayerSheet.toggle()
+                } label: {
+                    GreenButtonView(text: " +  Add player")
+                }
+                Button {
+                    showAddMatchSheet.toggle()
+                } label: {
+                    GreenButtonView(text: " +  Add match")
+                }
             }
             Spacer()
             Button {

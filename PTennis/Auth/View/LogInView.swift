@@ -45,8 +45,8 @@ import Combine
 //    }
 //}
 
-final class SignInWithEmailModel: ObservableObject {
-    @Published var email = ""
+final class LogInModel: ObservableObject {
+    @Published var email: String = ""
     @Published var password = ""
     
     func signIn() async throws {
@@ -60,10 +60,15 @@ final class SignInWithEmailModel: ObservableObject {
     
     func signUp() async throws {
         guard !email.isEmpty, !password.isEmpty else {
-            print("no email or pass")
+            print("no email or password")
             return
         }
         try await AuthManager.shared.createUser(email: email, password: password)
+    }
+    
+    func signInAnonymously() async throws {
+        
+        try await AuthManager.shared.signInAnonymously()
     }
 }
 
@@ -76,10 +81,10 @@ struct LogInView: View {
         case username, password
     }
     
-    @StateObject private var viewModel = SignInWithEmailModel()
-
+    @StateObject private var viewModel = LogInModel()
     @FocusState private var focusedField: FocusedField?
     @State private var isLoggedIn = false
+    
     
     var body: some View {
         content
@@ -97,12 +102,13 @@ struct LogInView: View {
             Text("Log in")
                 .font(Font(CTFont(.label, size: 48)))
                 .bold()
-            
+
             Spacer()
             
             VStack(alignment: .leading) {
                 Text("Email")
                     .font(.title2)
+                
                 TextField("Email", text: $viewModel.email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .submitLabel(.next)
@@ -117,31 +123,48 @@ struct LogInView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .submitLabel(.done)
                     .focused($focusedField, equals: .password)
+                
                 Text(error_text)
                     .font(.footnote)
                     .foregroundStyle(.red)
+                
             }.padding(.horizontal, 40)
             
             Spacer()
             
             Button {
                 Task {
-                    do {
-                        try await viewModel.signUp()
-                        showSignInView = false
-                    } catch {
-                        print("error")
-                    }
-                    
+//                    do {
+//                        try await viewModel.signUp()
+//                        showSignInView = false
+//                    } catch {
+//                        print("error")
+//                    }
                     do {
                         try await viewModel.signIn()
                         showSignInView = false
                     } catch {
+                        error_text = "incorrect username or password"
                         print("error")
                     }
                 }
             } label: {
                 GreenButtonView(text: "Submit")
+            }
+            
+            Button {
+                Task {
+                    do {
+                        try await viewModel.signInAnonymously()
+                        showSignInView = false
+                    } catch {
+                        error_text = "unknown error"
+                        print("guest login error")
+                    }
+                }
+            } label: {
+                Text("Log in as guest")
+                    .foregroundStyle(.dark)
             }
             
         }

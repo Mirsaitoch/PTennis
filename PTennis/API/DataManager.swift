@@ -14,25 +14,29 @@ class DataManager: ObservableObject {
     static let shared = DataManager()
     
     @Published var players: [Player] = []
-    
+    @Published var matches: [Match] = []
+
     init() {
         subscribeToPlayerUpdates()
     }
     
     deinit {
-        listenerRegistration?.remove()
+        listenerRegistrationPlayers?.remove()
+        listenerRegistrationMatches?.remove()
     }
     
-    private var listenerRegistration: ListenerRegistration?
-    
+    private var listenerRegistrationPlayers: ListenerRegistration?
+    private var listenerRegistrationMatches: ListenerRegistration?
+
     private let playersCollection = Firestore.firestore().collection("Players")
-    
+    private let matchesCollection = Firestore.firestore().collection("Matches")
+
     private func playerDocument(playerId: String) -> DocumentReference {
         playersCollection.document(playerId)
     }
     
     private func subscribeToPlayerUpdates() {
-        listenerRegistration = playersCollection.addSnapshotListener { [weak self] querySnapshot, error in
+        listenerRegistrationPlayers = playersCollection.addSnapshotListener { [weak self] querySnapshot, error in
             guard let self = self else { return }
             if let error = error {
                 print("Error getting player updates: \(error.localizedDescription)")
@@ -65,23 +69,54 @@ class DataManager: ObservableObject {
                 }
             }
         }
+        
+        
+        listenerRegistrationMatches = matchesCollection.addSnapshotListener { [weak self] querySnapshot, error in
+            guard let self = self else { return }
+            if let error = error {
+                print("Error getting matches updates: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let snapshot = querySnapshot else { return }
+            
+            snapshot.documentChanges.forEach { change in
+                switch change.type {
+                case .added:
+                    if let match = try? change.document.data(as: Match.self) {
+                        DispatchQueue.main.async {
+                            self.matches.append(match)
+                            self.matches.sort()
+                        }
+                    }
+                case .modified:
+                    break
+                case .removed:
+                    break
+                }
+            }
+        }
+
     }
     
     func getAllPlayers() async throws  -> [Player] {
-        
         let snapshot = try await playersCollection.getDocuments()
         var players : [Player] = []
-        
         for document in snapshot.documents {
-            
             let player = try document.data(as: Player.self)
-            
-            print(player)
-            
             players.append(player)
         }
-        
         return players
+    }
+    
+    func getAllMatches() async throws  -> [Match] {
+        let snapshot = try await matchesCollection.getDocuments()
+        var matches : [Match] = []
+        for document in snapshot.documents {
+            let match = try document.data(as: Match.self)
+            matches.append(match)
+        }
+        return matches
     }
     
     func addPlayer(player: Player) async throws {
@@ -96,8 +131,7 @@ class DataManager: ObservableObject {
          "phone": player.phone ?? "89999999999",
          "email": player.email ?? "test@mail.ru"]
         
-        try await Firestore.firestore()
-            .collection("Players")
+        try await playersCollection
             .document("\(player.id)")
             .setData(userData, merge: false)
     }
@@ -109,19 +143,22 @@ class DataManager: ObservableObject {
          "date": match.date,
          "player1": match.player1,
          "player2": match.player2,
-         "score1": match.score1,
-         "score2": match.score2,
-         "score3": match.score3
+         "score1_1": match.score1_1,
+         "score1_2": match.score1_2,
+         "score2_1": match.score2_1,
+         "score2_2": match.score2_2,
+         "score3_1": match.score3_1,
+         "score3_2": match.score3_2,
+         "winner": match.winner
         ]
         
-        try await Firestore.firestore()
-            .collection("Matches")
+        try await matchesCollection
             .document("\(match.id)")
             .setData(matchData, merge: false)
     }
     
     func updatePlayerRating(player: Player, isWin: Bool) async throws {
-        
+        //TODO: продумать что будет происходить при ничье 
         try await Firestore.firestore()
             .collection("Players")
             .document("\(player.id)")
