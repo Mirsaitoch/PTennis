@@ -33,6 +33,7 @@
 		3B7F5B0F2BD5920B0085165B /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7F5B0E2BD5920B0085165B /* ProfileView.swift */; };
 		3BA0519E2BDC32F300815B9A /* MatchesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0519D2BDC32F300815B9A /* MatchesViewModel.swift */; };
 		3BA051A02BDC34EA00815B9A /* MatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA0519F2BDC34EA00815B9A /* MatchCardView.swift */; };
+		3BA051A22BDC550900815B9A /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BA051A12BDC550900815B9A /* AppViewModel.swift */; };
 		3BDB86EB2BD28EF500E3135E /* LogInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EA2BD28EF500E3135E /* LogInView.swift */; };
 		3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EC2BD2901100E3135E /* BackButtonView.swift */; };
 		3BDB86EF2BD2959E00E3135E /* GreenButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */; };
@@ -98,6 +99,7 @@
 		3B7F5B0E2BD5920B0085165B /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3BA0519D2BDC32F300815B9A /* MatchesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewModel.swift; sourceTree = "<group>"; };
 		3BA0519F2BDC34EA00815B9A /* MatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCardView.swift; sourceTree = "<group>"; };
+		3BA051A12BDC550900815B9A /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		3BDB86EA2BD28EF500E3135E /* LogInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInView.swift; sourceTree = "<group>"; };
 		3BDB86EC2BD2901100E3135E /* BackButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackButtonView.swift; sourceTree = "<group>"; };
 		3BDB86EE2BD2959E00E3135E /* GreenButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenButtonView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				3B74C08B2BC01176000A75A9 /* PTennisApp.swift */,
+				3BA051A12BDC550900815B9A /* AppViewModel.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				3B6455E72BD3226C0016DD54 /* PlayersViewModel.swift in Sources */,
 				3B6455FA2BD41FEE0016DD54 /* GenderToggleView.swift in Sources */,
 				3B7F5B072BD57C760085165B /* CustomTabBar.swift in Sources */,
+				3BA051A22BDC550900815B9A /* AppViewModel.swift in Sources */,
 				3BDB87322BD2CABD00E3135E /* PlayersView.swift in Sources */,
 				3BDB86ED2BD2901100E3135E /* BackButtonView.swift in Sources */,
 				3B6455EE2BD408240016DD54 /* AddPlayerView.swift in Sources */,

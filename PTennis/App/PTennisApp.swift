@@ -20,12 +20,26 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct PTennisApp: App {
     
-//    @AppStorage("isLoggedIn") var isLoggedIn = false
+    @AppStorage("isLoggedIn") var isLogin = false
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
+    @ObservedObject var appViewModel = AppViewModel()
+    
+    init() {
+        if isLogin {
+            appViewModel.isLogin = true
+        }
+    }
     
     var body: some Scene {
         WindowGroup {
-            RootView()
+            if appViewModel.isLogin {
+                ContentView()
+                    .environmentObject(appViewModel)
+            } else {
+                LogInView()
+                    .environmentObject(appViewModel)
+            }
         }
     }
 }

@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct ProfileView: View {
-    
+    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject private var viewModel = ProfileViewModel()
-    @Binding var showSignInView: Bool
     let authUser = try? AuthManager.shared.getAuthUser()
     @State private var showAddPlayerSheet = false
     @State private var showAddMatchSheet = false
+    @AppStorage("isLoggedIn") var isLogin = false
+
     var body: some View {
         VStack {
             Spacer()
@@ -36,11 +37,13 @@ struct ProfileView: View {
                 Task {
                     do {
                         try viewModel.logOut()
+                        appViewModel.isLogin = false
+                        isLogin = false
                     }
                     catch {
                         print("error logOut")
                     }
-                    showSignInView.toggle()
+                    
                 }
             } label: {
                 GreenButtonView(text: "Log out")
@@ -58,5 +61,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(showSignInView: .constant(false))
+    ProfileView()
 }

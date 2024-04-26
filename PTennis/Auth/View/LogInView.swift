@@ -9,42 +9,6 @@ import SwiftUI
 import Firebase
 import Combine
 
-//struct AdaptsToKeyboard: ViewModifier {
-//    @State var currentHeight: CGFloat = 0
-//    
-//    func body(content: Content) -> some View {
-//        GeometryReader { geometry in
-//            content
-//                .padding(.bottom, self.currentHeight)
-//                .onAppear(perform: {
-//                    NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillShowNotification)
-//                        .merge(with: NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillChangeFrameNotification))
-//                        .compactMap { notification in
-//                            withAnimation(.easeOut(duration: 0.16)) {
-//                                notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
-//                            }
-//                        }
-//                        .map { rect in
-//                            rect.height - geometry.safeAreaInsets.bottom
-//                        }
-//                        .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
-//                    
-//                    NotificationCenter.Publisher(center: NotificationCenter.default, name: UIResponder.keyboardWillHideNotification)
-//                        .compactMap { notification in
-//                            CGFloat.zero
-//                        }
-//                        .subscribe(Subscribers.Assign(object: self, keyPath: \.currentHeight))
-//                })
-//        }
-//    }
-//}
-//
-//extension View {
-//    func adaptsToKeyboard() -> some View {
-//        return modifier(AdaptsToKeyboard())
-//    }
-//}
-
 final class LogInModel: ObservableObject {
     @Published var email: String = ""
     @Published var password = ""
@@ -73,9 +37,9 @@ final class LogInModel: ObservableObject {
 }
 
 struct LogInView: View {
-    
     @State private var error_text = ""
-    @Binding var showSignInView: Bool
+    @EnvironmentObject var appViewModel: AppViewModel
+    @AppStorage("isLoggedIn") var isLogin = false
     
     enum FocusedField {
         case username, password
@@ -85,13 +49,12 @@ struct LogInView: View {
     @FocusState private var focusedField: FocusedField?
     @State private var isLoggedIn = false
     
-    
     var body: some View {
         content
     }
     
     var content: some View {
-        VStack(){
+        VStack() {
             Image("log_in_ball")
                 .resizable()
                 .frame(width: 170, height: 170)
@@ -102,7 +65,7 @@ struct LogInView: View {
             Text("Log in")
                 .font(Font(CTFont(.label, size: 48)))
                 .bold()
-
+            
             Spacer()
             
             VStack(alignment: .leading) {
@@ -134,16 +97,13 @@ struct LogInView: View {
             
             Button {
                 Task {
-//                    do {
-//                        try await viewModel.signUp()
-//                        showSignInView = false
-//                    } catch {
-//                        print("error")
-//                    }
                     do {
                         try await viewModel.signIn()
-                        showSignInView = false
-                    } catch {
+                        isLogin = true
+                        appViewModel.isLogin = true
+                        print(":)")
+                    }
+                    catch {
                         error_text = "incorrect username or password"
                         print("error")
                     }
@@ -156,7 +116,8 @@ struct LogInView: View {
                 Task {
                     do {
                         try await viewModel.signInAnonymously()
-                        showSignInView = false
+                        isLogin = true
+                        appViewModel.isLogin = true
                     } catch {
                         error_text = "unknown error"
                         print("guest login error")
@@ -183,5 +144,5 @@ struct LogInView: View {
 
 
 #Preview {
-    LogInView(showSignInView: .constant(false))
+    LogInView()
 }

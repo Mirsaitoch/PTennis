@@ -13,24 +13,25 @@ struct RootView: View {
     @State private var selectedTab: String = "tennis.racket.circle"
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-                NavigationStack {
-                    VStack {
-                        ContentView(selectedTab: $selectedTab, showSignInView: $showSignInView)
-                    }
-                }
-            
-            CustomTabBar(selectedTab: $selectedTab)
-        }
-        .onAppear {
-            let authUser = try? AuthManager.shared.getAuthUser()
-            self.showSignInView = authUser == nil
-        }
-        .fullScreenCover(isPresented: $showSignInView) {
-            NavigationStack {
-                LogInView(showSignInView: $showSignInView)
-            }
-        }
+        Text("erf")
+//        ZStack(alignment: .bottom) {
+//                NavigationStack {
+//                    VStack {
+//                        ContentView(selectedTab: $selectedTab, showSignInView: $showSignInView)
+//                    }
+//                }
+//            
+//            CustomTabBar(selectedTab: $selectedTab)
+//        }
+//        .onAppear {
+//            let authUser = try? AuthManager.shared.getAuthUser()
+//            self.showSignInView = authUser == nil
+//        }
+//        .fullScreenCover(isPresented: $showSignInView) {
+//            NavigationStack {
+//                LogInView(showSignInView: $showSignInView)
+//            }
+//        }
     }
 }
 
