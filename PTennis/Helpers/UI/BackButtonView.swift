@@ -15,7 +15,6 @@ struct BackButtonView: View {
         } label: {
             RoundedRectangle(cornerRadius: 10)
                 .fill(.white)
-//                .stroke(.dark, lineWidth: 3)
                 .padding(1)
                 .frame(width: 40, height: 40)
                 .overlay {

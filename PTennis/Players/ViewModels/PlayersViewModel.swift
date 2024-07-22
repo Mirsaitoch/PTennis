@@ -20,6 +20,7 @@ final class PlayersViewModel: ObservableObject {
     private var dataManager = DataManager.shared
     private var cancellables: Set<AnyCancellable> = []
     @Published var sorted_in_reverse_order = false
+    @Published var isLoading = false
 
     
     init() {
@@ -32,6 +33,7 @@ final class PlayersViewModel: ObservableObject {
 
     func getAllPlayers() async throws {
         self.players = try await DataManager().getAllPlayers()
+        self.isLoading = dataManager.isLoading
     }
     
     func sortedInReverse() {

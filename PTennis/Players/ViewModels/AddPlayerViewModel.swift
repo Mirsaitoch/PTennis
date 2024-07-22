@@ -8,17 +8,16 @@
 import Foundation
 import SwiftUI
 
-@Observable
-final class AddPlayerViewModel {
+final class AddPlayerViewModel: ObservableObject {
         
-    var name_surname: String = ""
-    var rating: String = ""
-    var age: String = ""
-    var gender: Bool = false
-    var phone: String = ""
-    var email: String = ""
+    @Published var name_surname: String = ""
+    @Published var rating: String = ""
+    @Published var age: String = ""
+    @Published var gender: Bool = false
+    @Published var phone: String = ""
+    @Published var email: String = ""
     
-    var error_text = ""
+    @Published var error_text = ""
     
     var name_surname_array: [String] {
         return name_surname.split(separator: " ").map(String.init)
@@ -41,9 +40,27 @@ final class AddPlayerViewModel {
     }
     
     func createNewPlayer() async throws {
-        guard name_surname_array.count >= 2 else {
+        guard name_surname_array.count >= 2, name_surname_array[0].count >= 2, name_surname_array[0].count >= 2 else {
             print("error")
-            error_text = "Fill in the fields marked with an asterisk"
+            DispatchQueue.main.async {
+                self.error_text = "Enter the correct first and last name"
+            }
+            return
+        }
+        
+        guard let age = Int(age) else {
+            print("error")
+            DispatchQueue.main.async {
+                self.error_text = "Specify the age"
+            }
+            return
+        }
+        
+        guard isValidEmail(email) else {
+            print("error")
+            DispatchQueue.main.async {
+                self.error_text = "Enter the correct email address"
+            }
             return
         }
         
@@ -56,12 +73,23 @@ final class AddPlayerViewModel {
                             phone: phone,
                             email: email)
         
-        error_text = ""
+        DispatchQueue.main.async {
+            self.error_text = ""
+        }
+        
+
         try await DataManager.shared.addPlayer(player: player)
-                
+        
     }
     
     func generateUniqueUUID() -> String {
         return "\(UUID())"
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+
+        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailPred.evaluate(with: email)
     }
 }

@@ -7,13 +7,14 @@
 
 
 import SwiftUI
-import CustomTextField
 
 struct AddMatchView: View {
     
-    @State private var viewModel = AddMatchViewModel()
+    @StateObject var viewModel = AddMatchViewModel()
     @Environment(\.dismiss) var dismiss
     @State private var date = Date()
+    @FocusState private var focusedField: Field?
+    @State var showAlert = false
     
     enum Field: Hashable {
         case nameSurname
@@ -23,11 +24,14 @@ struct AddMatchView: View {
         case email
     }
     
-    @FocusState private var focusedField: Field?
+    init() {
+     UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+     UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+   }
     
     var body: some View {
         NavigationStack {
-            VStack() {
+            VStack {
                 ScrollView(showsIndicators: false) {
                     Image(.matchLogo)
                         .resizable()
@@ -38,12 +42,12 @@ struct AddMatchView: View {
                     
                     Spacer()
                     
-                    DatePicker("date", selection: $date)
+                    DatePicker("Select a Date", selection: $date, displayedComponents: [.date, .hourAndMinute])
+                        .datePickerStyle(.compact)
                         .padding(.bottom, 30)
-                        .frame(width: 200, height: 70)
                     
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.lightGreen)
+                        .fill(.primaryOne)
                         .frame(width: 320, height: 50)
                         .overlay {
                             VStack(alignment: .leading) {
@@ -57,6 +61,7 @@ struct AddMatchView: View {
                                             Text(player.name).tag(player as Player?)
                                         }
                                     }
+                                    .accentColor(.white)
                                     Spacer()
                                 }
                                 Spacer()
@@ -64,7 +69,7 @@ struct AddMatchView: View {
                         }
                     
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(.lightGreen)
+                        .fill(.primaryOne)
                         .frame(width: 320, height: 50)
                         .overlay {
                             VStack(alignment: .leading) {
@@ -78,6 +83,7 @@ struct AddMatchView: View {
                                             Text(player.name).tag(player as Player?)
                                         }
                                     }
+                                    .accentColor(.white)
                                     Spacer()
                                 }
                                 Spacer()
@@ -105,10 +111,12 @@ struct AddMatchView: View {
                                 try await viewModel.createNewMatch()
                             }
                             catch {
-                                print("error create match")
+                                print("Error create match")
                             }
-                            if viewModel.error_text == "" {
+                            if viewModel.alertMessage == "" {
                                 dismiss()
+                            } else {
+                                print(viewModel.showAlert)
                             }
                         }
                     } label: {
@@ -116,18 +124,25 @@ struct AddMatchView: View {
                     }
                     
                 }
-                .scrollClipDisabled()
+                .alert(isPresented: $viewModel.showAlert) {
+                    Alert(title: Text("Error"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("ok!")))
+                }
             }
+            .foregroundStyle(.white)
             .padding()
+            .background(.bcolor)
             .navigationTitle("New match")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    BackButtonView()
+            .onAppear {
+                Task {
+                    do {
+                        try await viewModel.getAllPlayers()
+                    } catch {
+                        print("error: get players")
+                    }
                 }
             }
         }
-        .environment(\.colorScheme, .light)
     }
 }
 

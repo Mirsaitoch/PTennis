@@ -23,13 +23,13 @@ struct CustomTabBar: View {
         }
         .padding()
         .background(Color
-            .lightGreen
+            .primaryOne
             .clipShape(TabCurve(tabPoint: getCurvePoints() - 15)))
         .cornerRadius(20.0)
         .padding(.horizontal)
         .overlay (
             Image(systemName: "tennisball.fill")
-                .foregroundStyle(.lightGreen)
+                .foregroundStyle(.white)
                 .frame(width: 10, height: 10)
                 .offset(x: getCurvePoints() - 3)
             ,alignment: .bottomLeading
@@ -43,21 +43,21 @@ struct CustomTabBar: View {
         else {
             switch selectedTab {
             case "tennis.racket.circle":
-                return tapPoints[0]
+                return tapPoints.sorted()[0]
             case "trophy":
-                return tapPoints[1]
+                return tapPoints.sorted()[1]
             case "person":
-                return tapPoints[2]
+                return tapPoints.sorted()[2]
             default:
-                return tapPoints[0]
+                return tapPoints.sorted()[0]
             }
         }
     }
 }
 
-#Preview {
-    CustomTabBar(selectedTab: .constant("tennis.racket.circle"))
-}
+//#Preview {
+//    CustomTabBar(selectedTab: .constant("tennis.racket.circle"))
+//}
 
 struct TabBarButton: View {
     var image: String
@@ -84,7 +84,7 @@ struct TabBarButton: View {
                     VStack {
                         Image(systemName: "\(image)\(selectedTab == image ? ".fill" : "")")
                             .font(.system(size: 25, weight: .semibold))
-                            .foregroundStyle(.dark)
+                            .foregroundStyle(.white)
                             .offset(y: selectedTab == image ? -10 : 0)
                     }
                 })
@@ -93,4 +93,8 @@ struct TabBarButton: View {
         }
         .frame(height: 50)
     }
+}
+
+#Preview {
+    ContentView()
 }

@@ -54,7 +54,7 @@ struct LogInView: View {
     }
     
     var content: some View {
-        VStack() {
+        VStack {
             Image("log_in_ball")
                 .resizable()
                 .frame(width: 170, height: 170)
@@ -63,26 +63,33 @@ struct LogInView: View {
             Spacer()
             
             Text("Log in")
-                .font(Font(CTFont(.label, size: 48)))
+                .font(.system(size: 48, design: .rounded))
                 .bold()
             
             Spacer()
             
             VStack(alignment: .leading) {
                 Text("Email")
-                    .font(.title2)
-                
+                    .font(.system(size: 25, design: .rounded))
+
                 TextField("Email", text: $viewModel.email)
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                    .font(.system(size: 20, design: .rounded))
+                    .foregroundStyle(.bcolor)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .submitLabel(.next)
                     .focused($focusedField, equals: .username)
+                
             }.padding(.horizontal, 40)
             
             VStack(alignment: .leading) {
                 Text("Password")
-                    .font(.title2)
+                    .font(.system(size: 25, design: .rounded))
                 
                 SecureField("Enter a password", text: $viewModel.password)
+                    .foregroundStyle(.bcolor)
+                    .font(.system(size: 20, design: .rounded))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .submitLabel(.done)
                     .focused($focusedField, equals: .password)
@@ -101,7 +108,6 @@ struct LogInView: View {
                         try await viewModel.signIn()
                         isLogin = true
                         appViewModel.isLogin = true
-                        print(":)")
                     }
                     catch {
                         error_text = "incorrect username or password"
@@ -125,11 +131,13 @@ struct LogInView: View {
                 }
             } label: {
                 Text("Log in as guest")
-                    .foregroundStyle(.dark)
+                    .foregroundStyle(.white)
             }
             
         }
+        .foregroundStyle(.white)
         .navigationBarBackButtonHidden()
+        .background(.bcolor)
         .onSubmit {
             if focusedField == .username {
                 focusedField = .password

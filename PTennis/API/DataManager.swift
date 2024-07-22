@@ -15,6 +15,7 @@ class DataManager: ObservableObject {
     
     @Published var players: [Player] = []
     @Published var matches: [Match] = []
+    var isLoading = false
 
     init() {
         subscribeToPlayerUpdates()
@@ -46,12 +47,14 @@ class DataManager: ObservableObject {
             guard let snapshot = querySnapshot else { return }
             
             snapshot.documentChanges.forEach { change in
+                self.isLoading = true
                 switch change.type {
                 case .added:
                     if let player = try? change.document.data(as: Player.self) {
                         DispatchQueue.main.async {
                             self.players.append(player)
                             self.players.sort()
+                            self.isLoading = false
                         }
                     }
                 case .modified:
@@ -81,12 +84,14 @@ class DataManager: ObservableObject {
             guard let snapshot = querySnapshot else { return }
             
             snapshot.documentChanges.forEach { change in
+                self.isLoading = true
                 switch change.type {
                 case .added:
                     if let match = try? change.document.data(as: Match.self) {
                         DispatchQueue.main.async {
                             self.matches.append(match)
                             self.matches.sort()
+                            self.isLoading = false
                         }
                     }
                 case .modified:
@@ -102,6 +107,7 @@ class DataManager: ObservableObject {
     func getAllPlayers() async throws  -> [Player] {
         let snapshot = try await playersCollection.getDocuments()
         var players : [Player] = []
+        self.isLoading = true
         for document in snapshot.documents {
             let player = try document.data(as: Player.self)
             players.append(player)
@@ -112,6 +118,7 @@ class DataManager: ObservableObject {
     func getAllMatches() async throws  -> [Match] {
         let snapshot = try await matchesCollection.getDocuments()
         var matches : [Match] = []
+        self.isLoading = true
         for document in snapshot.documents {
             let match = try document.data(as: Match.self)
             matches.append(match)
@@ -163,21 +170,5 @@ class DataManager: ObservableObject {
             .collection("Players")
             .document("\(player.id)")
             .updateData(["rating": player.rating! + (isWin ? 1 : -1)])
-        
     }
-    
-//    func deletePlayer(at indexSet: IndexSet) {
-//            let db = Firestore.firestore()
-//            indexSet.forEach { index in
-//                Firestore.firestore()
-//                    .collection("Players")
-//                    .document(playerID)
-//                    .delete { error in
-//                    if let error = error {
-//                        print("Ошибка удаления документа: \(error)")
-//                        return
-//                    }
-//                }
-//            }
-//        }
 }

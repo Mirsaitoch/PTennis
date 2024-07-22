@@ -16,7 +16,7 @@ struct MatchCardView: View {
     var body: some View {
         
         RoundedRectangle(cornerRadius: 10)
-            .fill(.lightGreen)
+            .fill(.primaryOne)
             .overlay {
                 VStack() {
                     HStack {
@@ -69,7 +69,7 @@ struct SmallRect: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
             .rotation(.degrees(8))
-            .fill(.paleGreen)
+            .fill(.white)
             .opacity(isBiggest ? 1 : 0.7)
             .overlay {
                 Text("\(num)")
@@ -84,7 +84,7 @@ struct BigRect: View {
     var name: String
     var body: some View {
         RoundedRectangle(cornerRadius: 8)
-            .fill(.paleGreen)
+            .fill(.white)
             .overlay {
                 HStack {
                     Text(name)

@@ -17,6 +17,10 @@ struct Player: Identifiable, Codable, Comparable, Hashable {
         }
     }
     
+    static func ==(lhs: Player, rhs: Player) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
     let id: String
     var name: String
     var surname: String

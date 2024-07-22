@@ -16,12 +16,6 @@ struct GreyButtonView: View {
         RoundedRectangle(cornerRadius: 5.0)
             .foregroundStyle(.dark)
             .padding(.horizontal, 20)
-            .containerRelativeFrame(.horizontal){ width, axis in
-                width * 0.95
-            }
-            .containerRelativeFrame(.vertical){ height, axis in
-                height * 0.08
-            }
             .overlay {
                 Text(text)
                     .font(.title)

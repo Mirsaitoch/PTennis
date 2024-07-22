@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import CustomTextField
 
 struct AddPlayerView: View {
     
-    @State private var viewModel = AddPlayerViewModel()
+    @StateObject private var viewModel = AddPlayerViewModel()
     @Environment(\.dismiss) var dismiss
-    
+    @FocusState private var focusedField: Field?
+
     enum Field: Hashable {
         case nameSurname
         case rating
@@ -21,7 +21,10 @@ struct AddPlayerView: View {
         case email
     }
     
-    @FocusState private var focusedField: Field?
+    init() {
+     UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+     UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
+   }
     
     var body: some View {
         NavigationStack {
@@ -36,9 +39,6 @@ struct AddPlayerView: View {
                     
                     Spacer()
                     
-                    CustomTF(text: $viewModel.name_surname, placeholder: "Name Surname", ImageTF: Image(systemName: "person"), isPassword: false, StylesType: .Style2, KeyboardType: .default, color: nil)
-                        .focused($focusedField, equals: .nameSurname)
-                    
                     HStack {
                         Text(viewModel.error_text)
                             .foregroundColor(.red)
@@ -46,6 +46,11 @@ struct AddPlayerView: View {
                         Spacer()
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    CustomTF(text: $viewModel.name_surname, placeholder: "Name Surname", ImageTF: Image(systemName: "person"), isPassword: false, StylesType: .Style2, KeyboardType: .default, color: nil)
+                        .background(.bcolor)
+                        .autocorrectionDisabled()
+                        .autocapitalization(.none)
+                        .focused($focusedField, equals: .nameSurname)
                     
                     CustomTF(text: $viewModel.rating, placeholder: "Rating", ImageTF: Image(systemName: "star"), isPassword: false, StylesType: .Style2, KeyboardType: .numberPad, color: focusedField == .rating ? .lightGreen : nil)
                         .focused($focusedField, equals: .rating)
@@ -58,8 +63,11 @@ struct AddPlayerView: View {
                     
                     CustomTF(text: $viewModel.email, placeholder: "Email", ImageTF: Image(systemName: "envelope"), isPassword: false, StylesType: .Style2, KeyboardType: .emailAddress, color: focusedField == .email ? .green : nil)
                         .focused($focusedField, equals: .email)
-                    
+                        .autocorrectionDisabled()
+                        .autocapitalization(.none)
+
                     GenderToggleView(toggleOn: viewModel.gender)
+                    
                     Button {
                         Task {
                             do {
@@ -76,21 +84,16 @@ struct AddPlayerView: View {
                         GreenButtonView(text: "Add player")
                     }
                 }
-                .scrollClipDisabled()
-                
                 Spacer()
             }
             .padding()
+            .background(.bcolor)
             .navigationTitle("New player")
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    BackButtonView()
-                }
-            }
         }
         .environment(\.colorScheme, .light)
     }
+    
     
 }
 

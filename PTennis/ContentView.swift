@@ -7,30 +7,29 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @State var selectedTab = "tennis.racket.circle"
     
     var body: some View {
-        ZStack(){
-            Color
-                .paleGreen
-                .ignoresSafeArea()
-            VStack{
-                switch selectedTab {
-                case "tennis.racket.circle":
-                    PlayersView()
-                case "trophy":
-                    MatchesView()
-                case "person":
-                    ProfileView(selectedTab: $selectedTab)
-                default:
-                    MatchesView()
+            ZStack {
+                Color.bcolor.ignoresSafeArea()
+                VStack {
+                    switch selectedTab {
+                    case "tennis.racket.circle":
+                        PlayersView()
+                    case "trophy":
+                        MatchesView()
+                    case "person":
+                        ProfileView(selectedTab: $selectedTab)
+                    default:
+                        MatchesView()
+                    }
+                    CustomTabBar(selectedTab: $selectedTab)
                 }
-                CustomTabBar(selectedTab: $selectedTab)
             }
         }
-    }
 }
 
 #Preview {

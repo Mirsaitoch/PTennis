@@ -21,7 +21,8 @@ final class MatchesViewModel: ObservableObject {
     private var dataManager = DataManager.shared
     private var cancellables: Set<AnyCancellable> = []
     @Published var sorted_in_reverse_order = false
-    
+    @Published var isLoading = false
+
     init() {
         dataManager.$matches
             .sink { [weak self] matches in
@@ -37,7 +38,7 @@ final class MatchesViewModel: ObservableObject {
     
     func getAllMatches() async throws {
         self.matches = try await DataManager().getAllMatches()
+        self.isLoading = dataManager.isLoading
     }
-    
 }
 

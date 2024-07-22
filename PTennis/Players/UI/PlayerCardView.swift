@@ -12,7 +12,7 @@ struct PlayerCardView: View {
     var player: Player
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
-            .fill(.lightGreen)
+            .fill(.primaryOne)
             .frame(minWidth: 100, maxWidth: .infinity, minHeight: 70)
             .overlay {
                 HStack {
